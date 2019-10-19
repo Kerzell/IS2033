@@ -1,0 +1,311 @@
+
+//imports
+import java.util.Scanner;
+import java.util.Calendar;
+
+public class WhateverTf 
+{
+	public static void main(String args[])
+	{
+		//object variables
+		Scanner input = new Scanner(System.in);
+		Calendar dateTime = Calendar.getInstance();
+		
+		//variables 
+		String orderSummary = null;
+		String laptop = null;
+		char newCustomer = ' ';
+		char correctLaptop = ' ';
+		char cont = 'N';
+		int choice = 0;
+		int qty = 0;
+		int trigger = 0;
+		double lineItem = 0.0;
+		double price = 0.0;
+		double subtotal = 0.0;
+		double tax = 0.0825;
+		double total = 0.0;
+		
+	while(Character.toUpperCase(cont) == 'N')
+	{
+		
+		System.out.printf("%nTOP LAPTOPS OF %tY"
+                + "%n%n1.  %-23s %7s $%,9.2f"
+                + "%n2.  %-23s %8s %,9.2f"
+                + "%n3.  %-23s %8s %,9.2f"
+                + "%n4.  %-23s %8s %,9.2f"
+                + "%n5.  %-23s %8s %,9.2f"
+                + "%n%nEnter your choice:  ",
+                dateTime,
+               "HP Envy 13", " ", 799.99,
+               "Asus Zenbook 13 UX333FA", " ", 849.99,
+               "Dell XPS 13", " ", 989.99,
+               "Alienware Area 51-m", " ", 1299.99,
+               "Razor Blade Stealth", " ", 1299.00);
+		
+		choice = input.nextInt(); //takes user's choice 
+		input.nextLine(); //clear buffer
+
+		switch(choice)
+		{
+		case 1:
+			 laptop = "HP Envy 13";
+	    	 price = 799.99;
+	    	 
+	    	 System.out.printf("Enter the quantity: ");
+	    	 qty = input.nextInt();
+	    	 input.nextLine(); //clear buffer
+	    	 
+	    	 if(qty == 1)
+	    	 {
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 else
+	    	//adds plural to laptop if user purchasing more than 1
+	    	 {
+	    		 System.out.printf("You're purchasing %d %ss. Is this correct?  Enter 'Y' "
+			    			+ "or 'N':  ", qty, laptop);
+		    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 trigger = 1; 
+	    	 break;
+		
+		case 2:
+			laptop = "Asus Zenbook 13 UX3333FA";
+	    	 price = 849.99;
+	    	 
+	    	 System.out.printf("Enter the quantity: ");
+	    	 qty = input.nextInt();
+	    	 input.nextLine(); //clear buffer
+	    	
+	    	 if(qty == 1)
+	    	 {
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 else
+	    	//adds plural to laptop if user purchasing more than 1
+	    	 {
+	    		 System.out.printf("You're purchasing %d %ss. Is this correct?  Enter 'Y' "
+			    			+ "or 'N':  ", qty, laptop);
+		    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 trigger = 1;
+	    	 break;
+	    	 
+		case 3:
+			laptop = "Asus Zenbook 13 UX3333FA";
+	    	 price = 849.99;
+	    	 
+	    	 System.out.printf("Enter the quantity: ");
+	    	 qty = input.nextInt();
+	    	 input.nextLine(); //clear buffer
+	    	 
+	    	 if(qty == 1)
+	    	 {
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 else
+	    	//adds plural to laptop if user purchasing more than 1
+	    	 {
+	    		 System.out.printf("You're purchasing %d %ss. Is this correct?  Enter 'Y' "
+			    			+ "or 'N':  ", qty, laptop);
+		    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 trigger = 1;
+	    	 break;
+	    	 
+		case 4:
+			laptop = "Alienware Area 51-m";
+			price = 1999.99;
+	 
+			System.out.printf("Enter the quantity: ");
+			qty = input.nextInt();
+			input.nextLine(); //clear buffer 
+			
+			if(qty == 1)
+	    	 {
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 else
+	    	//adds plural to laptop if user purchasing more than 1
+	    	 {
+	    		 System.out.printf("You're purchasing %d %ss. Is this correct?  Enter 'Y' "
+			    			+ "or 'N':  ", qty, laptop);
+		    	 cont = input.nextLine().charAt(0);
+	    	 }
+			trigger = 1;
+			break;
+			
+		case 5:
+			laptop = "Razor Blade Stealth";
+	    	price = 1299.00;
+	    	
+	    	System.out.printf("Enter the quantity: ");
+	    	qty = input.nextInt();
+	    	input.nextLine(); //clear buffer
+	    
+	    	if(qty == 1)
+	    	 {
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	 else
+	    	//adds plural to laptop if user purchasing more than 1
+	    	 {
+	    		 System.out.printf("You're purchasing %d %ss. Is this correct?  Enter 'Y' "
+			    			+ "or 'N':  ", qty, laptop);
+		    	 cont = input.nextLine().charAt(0);
+	    	 }
+	    	trigger = 1;
+	    	break;
+	    	
+	    default:
+	    	System.out.printf("Invalid choice!  Try again");
+			System.out.printf("%nEnter 'Y' to add a laptop to your purchase "
+							+ "or 'N' to proceed to checkout:  ");
+			input.nextLine();
+			cont = input.nextLine().charAt(0);
+			trigger = 0;
+	    	break;
+	    	
+		}//END Switch(choice) 
+		
+		if(Character.toUpperCase(cont) == 'Y')
+		{
+			System.out.printf("%nEnter 'Y' to add a laptop to your purchase "
+					+ "or 'N' to proceed to checkout:  ");
+				input.nextLine();
+				cont = input.nextLine().charAt(0);
+				trigger = 0;
+		}//END if cont == 'y'
+		
+		if(trigger == 1)
+		   { 
+		     orderSummary += String.format("%n%,-9d %-30s %8s $%,17.2f",
+		                     qty, laptop, " ", lineItem);
+		     trigger = 0;
+		     
+		   } //END if for $ sign
+		   else
+		   {
+		     orderSummary += String.format("%n%,-9d %-30s %9s %,17.2f",
+		                     qty, laptop, " ", lineItem);
+		     
+		   }//END else for no $ sign 
+
+		
+	     /*if(choice == 5)
+	     {
+	    	 
+	    	laptop = "Razor Blade Stealth";
+	    	price = 1299.00;
+	    	
+	    	System.out.printf("Enter the quantity: ");
+	    	qty = input.nextInt();
+	    	input.nextLine(); //clear buffer
+	    	
+	    	System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+	    			+ "or 'N':  ", qty, laptop);
+	    	cont = input.nextLine().charAt(0);
+	    	 
+	     }//END if choice 5 
+	     
+	     else if(choice == 4)
+	     {
+	    	 laptop = "Alienware Area 51-m";
+	    	 price = 1999.99;
+	    	 
+	    	 System.out.printf("Enter the quantity: ");
+	    	 qty = input.nextInt();
+	    	 input.nextLine(); //clear buffer 
+	    	 
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+		     cont = input.nextLine().charAt(0);
+		     
+	     }//END if choice 4
+	     
+	     else if(choice == 3)
+	     {
+	    	 laptop = "Dell XPS 13";
+	    	 price = 989.99;
+	    	 
+	    	 System.out.printf("Enter the quantity: ");
+	    	 qty = input.nextInt();
+	    	 input.nextLine(); //clear buffer
+	    	 
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+		    	 
+	     }//END if choice 3
+	     
+	     else if(choice == 2)
+	     {
+	    	 laptop = "Asus Zenbook 13 UX3333FA";
+	    	 price = 849.99;
+	    	 
+	    	 System.out.printf("Enter the quantity: ");
+	    	 qty = input.nextInt();
+	    	 input.nextLine(); //clear buffer
+	    	 
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+	    	 
+	     }//END if choice 2
+	     
+	     else if(choice == 1)
+	     {
+	    	 laptop = "HP Envy 13";
+	    	 price = 799.99;
+	    	 
+	    	 System.out.printf("Enter the quantity: ");
+	    	 qty = input.nextInt();
+	    	 input.nextLine(); //clear buffer
+	    	 
+	    	 System.out.printf("You're purchasing %d %s. Is this correct?  Enter 'Y' "
+		    			+ "or 'N':  ", qty, laptop);
+	    	 cont = input.nextLine().charAt(0);
+	 
+	     }//END if choice 1
+	     
+	     else if(choice > 5 || choice <= 0)	
+	     {
+				System.out.printf("Invalid choice!  Try again");
+				System.out.printf("%nEnter 'Y' to add a laptop to your purchase "
+								+ "or 'N' to exit:  ");
+				cont = input.nextLine().charAt(0);
+				
+	     }//END else invalid choice
+	    */
+		System.out.printf("%nEnter 'Y' if you are a new customer or 'N' to exit %n");
+		newCustomer = input.nextLine().charAt(0);
+		
+		do 
+		{
+			cont = 'N';
+			 if(Character.toUpperCase(newCustomer) != 'N')
+				{
+					System.out.printf("%nYou entered '%s' which is an invalid response!", newCustomer);
+					System.out.printf("%nEnter 'Y' if you are a new customer or 'N' to exit %n");
+					newCustomer = input.nextLine().charAt(0);
+				}
+		}while(Character.toUpperCase(newCustomer) == 'Y');
+		//END do-while loop 
+		
+		}//END While-loop
+		
+		System.exit(0);
+	}//END Main 
+	
+}//END Class RamosK001PA2
