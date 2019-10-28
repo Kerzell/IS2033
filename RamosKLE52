@@ -1,0 +1,104 @@
+**
+ * @(#)author: Kerzell Ramos
+ * @filename: RamosKLE52.java
+ * @version 1.00 Oct. 23rd, 2019
+ * 
+ * @purpose: Use various predefined methods to take in user inputed values for a book's title,
+ * 			author and publisher and print them into an order list. 
+ **/
+
+//imports
+import java.util.Scanner;
+
+public class RamosKLE52 
+{
+  //class variables
+  private static Scanner input = new Scanner(System.in);
+  private static String readingList = "MY READING LIST";
+  
+  public static void main(String args[])
+  {
+    //variables
+    String bookTitle = null;
+    String contraction = "st"; //initialized to "st" for use with "1st"
+    int i = 1; //Counter control variable - used with contraction
+    
+    //operation
+    for(; i <= 2; i++) 
+    {
+    	//Method calls
+    	bookTitle = captureTitle(i, contraction);
+    	contraction = "nd"; //changes contraction for use with "2nd"
+    	createReadingList(bookTitle);
+        
+    }//END for-loop 
+    
+    printReadingList(); //call to printReadingList method, outside for loop since used only once
+  }
+  
+  /**
+   * @param i - counter control
+   * @param contraction - used with counter control 
+   * 
+   * prompts user for book title
+   * @return String 
+   */ 
+  public static String captureTitle(int i, String contraction)
+  {
+		System.out.printf("%nPlease enter the %d%s book's title:  %n", i, contraction);
+		return input.nextLine();
+  }//END captureTitle(int, String) : String
+  
+  /**
+   * @param bookTitle
+   * 
+   * prompts user for books author
+   * @return String
+   */
+  public static String captureAuthor(String bookTitle)
+  {
+    System.out.printf("%nPlease enter the author for \"%s\"  %n", bookTitle);
+    return input.nextLine();
+  }//END captureAuthor(String) : String
+  
+  
+  /**
+   * @param bookTitle
+   * 
+   * prompts user for publisher's name
+   * @return String
+   */
+  public static String capturePublisher(String bookTitle)
+  {
+    System.out.printf("%nPlease enter the publisher for \"%s\"  %n", bookTitle);
+    return input.nextLine();
+  }//END capturePublisher(String) : String
+  
+  
+  /**
+   * @param bookTitle
+   * 
+   * format's output with readingList
+   */
+  public static void createReadingList(String bookTitle)
+  {
+	/*String title = bookTitle;
+	String author = captureAuthor(bookTitle);
+	String publisher = capturePublisher(bookTitle);*/
+	
+	readingList += String.format("%n%nTitle:  %s"
+								+ "%nAuthor:  %s"
+								+ "%nPublisher:  %s", bookTitle, captureAuthor(bookTitle), capturePublisher(bookTitle));
+  }//END createReadingList(String) : void 
+  
+  
+  /**
+   * prints out formated list
+   */
+  public static void printReadingList()
+  {
+	 System.out.printf("%n%s%n", readingList);
+	  
+  }//END printReadingList : void 
+  
+}//END class RamosKLE52
