@@ -1,0 +1,142 @@
+/**
+ * @(#)RamosKLE64.java
+ * @author Kerzell Ramos
+ * @version 1.00 11/13/2019 - 12:33
+ * 
+ * @PROGRAM_PURPOSE:
+ * 
+ */
+
+//imports
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class RamosKLE64
+{
+	
+  static int binarySearch(String[] arr, String x) 
+  {
+    int l = 0, r = arr.length-1;
+    
+    while (l <= r)
+    {
+      int m = l + (r - l) / 2;
+      
+      int res = x.compareTo(arr[m]);
+      
+      if (res == 0)
+      {
+        return m;
+      }//end if
+      else if (res > 0)
+      {
+    	  l = m + 1;
+      }//END else if
+      else
+      {
+        r = m - 1;
+      }//END else
+    }   
+    return -1;
+  }//END binarySearch(String[], String) : int 
+  
+  static void printContent(String arr[],String arr1[])
+  {
+    
+    System.out.print("Oscar Categories: ");
+    for(String item : arr )
+    {
+      System.out.print(item+" ");
+    }//END for array
+    
+    System.out.println();  
+    System.out.printf("%noscarCategoriesCopy Array: ");
+    
+    for(String item : arr1 )
+    {
+      System.out.print(item+" "); 
+    }//END for 
+    
+    System.out.println();  
+    
+  }//END printContent(String[], String[]) : void 
+  
+  public static void main(String args[])
+  {
+    String[] oscarCategories = new String[]{"best Picture", " best animated feature film", " best directing"};
+    String[] oscarCategoriesCopy= new String[3];
+    System.arraycopy(oscarCategories, 0, oscarCategoriesCopy, 0, 3);   
+    
+    if (Arrays.equals(oscarCategories,oscarCategoriesCopy)) //Check if are the exact same - remember pass address to array element
+    {
+      System.out.printf("The oscarCategories array equals the oscarCategoriesCopy array%n");
+    }//END if
+    else
+    {
+      System.out.printf("%nThe oscarCategories array doesn't equal the oscarCategoriesCopy array%n");
+    
+      Arrays.sort(oscarCategories);
+    }//END else
+    
+    System.out.printf("%nThe oscarCategories array have been sorted%n");   
+    
+    
+    if (!Arrays.equals(oscarCategories,oscarCategoriesCopy))
+    { 
+      System.out.printf("The oscarCategories array equals the oscarCategoriesCopy array");
+    }//END if
+    else
+    {  
+      System.out.printf("The oscarCategories array doesn't equal the oscarCategoriesCopy array");
+    }//END else
+    
+    for(int i = 0 ; i<3;i++)
+    {
+      oscarCategories[i] = oscarCategories[i].toLowerCase();       
+    }//END for loop
+    
+    System.out.printf("%n%nWhich Oscar category are you looking for?%n%n");
+    
+    String arr[] = new String[]{"Best Picture", "Best Animated Feature Film", "Best Directing"};
+    
+    for(int i = 0 ; i<3;i++)
+    {
+      System.out.println(i+1+". "+arr[i]);
+    }//END for 
+    
+    System.out.printf("%nEnter your choice: ");
+    
+    Scanner input = new Scanner(System.in);
+    int choice = input.nextInt();
+    
+    int result = 0;
+    
+    
+    switch(choice)
+    {
+      case 1:
+        result = binarySearch(oscarCategories,arr[0].toLowerCase());
+        break;  
+        
+      case 2:
+        result = binarySearch(oscarCategories,arr[1].toLowerCase());
+        break;
+        
+      case 3:
+        result = binarySearch(oscarCategories,arr[2].toLowerCase());
+        break;
+        
+    }//END switch(choice)
+    
+    if (result == -1)
+    {
+    	System.out.printf("%nElement not present%n%n");
+    }//END if
+    else
+    {
+    	System.out.printf("Found "+arr[choice-1].toUpperCase()+" at element "+result+" in the oscarCategoriesArray");
+    }//END else
+    printContent(oscarCategories,oscarCategoriesCopy); //call directly to printContent method with two parameters
+    
+  }//END main method
+}//END class RamosKLE64
