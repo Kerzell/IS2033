@@ -1,0 +1,213 @@
+/**
+ * @filename: RamosK02TPA1.java
+ * @author: Kerzell Ramos
+ * @version 1.00, 06/16/2020
+ * Program_purpose: To create a program that estimates a user's
+ * 					tax refund or tax amount owed 
+ * 					based on income, tax rate, marital status and
+ * 					the number of dependents they claim. 
+ */
+
+//imports
+import java.util.Scanner;
+import java.util.Calendar;
+
+public class RamosK02TPA1 {
+	/*
+	 * When a user wants to proceed with estimated tax calculations, 
+	 * the user is prompted for a taxpayer’s first and last name, then, 
+	 * prompts continue for gross annual income along with filing status, the number of dependents,
+	 * taxes paid, and other credits and payments made.
+	 * A tax rate is then determined. 
+	 * Calculations are made for the adjusted taxable income, 
+	 * the tax based on income, taxes owed or a refund.
+	 * The estimated tax information is then displayed; otherwise, a no taxes message is displayed. 
+	 */
+	public static void main(String[] args) {
+		
+		//objects
+		Scanner input = new Scanner(System.in);
+		Calendar dateTime = Calendar.getInstance(); 
+		
+		//variables - declared and initialized 
+		String name = null, filingStatus = null;
+		int statusChoice = 0, noDependents = 0;
+		double grossIncome = 0.0, stdDeduction = 0.0, adjustedInc = 0.0, taxesPaid = 0.0, 
+			   otherCrdtPmnts = 0.0, tax = 0.0, taxesOwed = 0.0, taxRate = 0.0, refund = 0.0;
+		char response = ' ';
+		
+		//prompt #1 (loop control)
+		System.out.printf("%nProceed with federal tax calculations? \'Y' or \'N':  ");
+		response = input.nextLine().charAt(0);
+		
+		while(Character.toUpperCase(response) == 'Y') {
+			
+			//prompt #2 - requests user's name
+			System.out.printf("%nPlease enter your first and last name:  ");
+			name = input.nextLine();
+			
+			//prompt #3 - filing single or jointly 
+			System.out.printf("%n1. Married Filing Jointly %n"
+							+ "2. Single %n"
+							+ "%nEnter 1 or 2:  ");
+			statusChoice = input.nextInt();
+			
+			//determine if single or filing jointly based on response
+			if(statusChoice == 1) {
+				filingStatus = "Married Filing Jointly";
+				stdDeduction = 24400;
+			}//END IF statusChoice == 1
+			else{
+				filingStatus = "Single";
+				stdDeduction = 12200;
+			}//END ELSE statusChoice != 1
+			
+			//prompt #4 - annual income
+			System.out.printf("%nPlease enter your gross annual income or 0 for none:  ");
+			grossIncome = input.nextDouble();
+			
+			//prompt #5 - number of dependents
+			System.out.printf("%nPlease enter the number of dependents:  ");
+			noDependents = input.nextInt();
+			
+			//prompt #6 - any prior federal taxes paid
+			System.out.printf("%nPlease enter federal income taxes paid:  ");
+			taxesPaid = input.nextDouble();
+			
+			//prompt #7 - other credits and payments made
+			System.out.printf("%nPlease enter the total for other credits and payments:  ");
+			otherCrdtPmnts = input.nextDouble();
+
+			//determine tax rate [1 = married, 2 = single]
+			if(statusChoice == 1) {
+				if(grossIncome > 612350) {
+					taxRate = 37;
+				}else {
+					if(grossIncome > 408200) {
+						taxRate = 35;
+					}else {
+						if(grossIncome > 321450) {
+							taxRate = 32;
+						}else {
+							if(grossIncome > 168400) {
+								taxRate = 24;
+							}else {
+								if(grossIncome > 78950) {
+									taxRate = 22;
+								}else {
+									if(grossIncome > 19400) {
+										taxRate = 12;
+									}//END IF grossIncome > 19400
+									else {
+										taxRate = 10;
+									}//END ELSE grossIncome < 19400
+									
+								}//END IF grossIncome > 78950
+								
+							}//END IF grossIncome > 168400
+							
+						}//END IF grossIncome > 321450
+						
+					}//END IF grossIncome > 408200
+					
+				}//END IF grossIncome > 612350
+				
+			}//END IF statusChoice == 1
+			
+			else {
+				if(grossIncome > 612350) {
+					taxRate = 37;
+				}else {
+					if(grossIncome > 408200) {
+						taxRate = 35;
+					}else {
+						if(grossIncome > 321450) {
+							taxRate = 32;
+						}else {
+							if(grossIncome > 168400) {
+								taxRate = 24;
+							}else {
+								if(grossIncome > 78950) {
+									taxRate = 22;
+								}else {
+									if(grossIncome > 19400) {
+										taxRate = 12;
+									}//END IF grossIncome > 19400
+									else {
+										taxRate = 10;
+									}//END ELSE grossIncome < 19400
+									
+								}//END IF grossIncome > 78950
+								
+							}//END IF grossIncome > 168400
+							
+						}//END IF grossIncome > 321450
+						
+					}//END IF grossIncome > 408200
+					
+				}//END IF grossIncome > 61250
+				
+			}//END ELSE statusChoice != 1 
+
+			//calculation 1
+			otherCrdtPmnts = otherCrdtPmnts + (noDependents * 2000);
+			
+			//calculation 2
+			adjustedInc = grossIncome - stdDeduction - otherCrdtPmnts;
+			
+			//calculation 3
+			tax = adjustedInc * (taxRate/100);
+			
+			//calculation 5
+			if(tax > taxesPaid) {
+				taxesOwed = tax - taxesPaid;
+			}//END IF tax > taxesPaid
+			else {
+				tax = adjustedInc * (taxRate/100);
+			}//END ELSE tax < taxesPaid
+			
+			//calculation 
+			if(taxesOwed > 0.0) {
+				taxesOwed = tax - taxesPaid;
+				refund = 0.0;
+			}//END IF taxesOwed > 0.0
+			else {
+				refund = taxesPaid - tax;
+				taxesOwed = 0.0;
+			}//END ELSE-IF refund > 0.0
+			
+			//output
+			if(tax > 0) {
+				//formatted output according to specifications
+				System.out.printf("%n%n%tY ESTIMATED FEDERAL INCOME TAXES FOR: %S"
+								+ "%n%nFiling Status:  %s"
+								+ "%nNo. of Child Tax Credit Dependents:  %d"
+								+ "%n%nGross Annual Income $%,.2f"
+								+ "%n%nDeductions:"
+								+ "%n Standard Deduction:  %,.2f"
+								+ "%n Other Credits and Deductions:  %,.2f"
+								+ "%n%nAdjusted Taxable Income:  $%,.2f"
+								+ "%n%nTax at %,.0f%%:  $%,.2f"
+								+ "%nTaxes Owed:  $%,.2f"
+								+ "%nRefund:  $%,.2f"
+								, dateTime, name, filingStatus, noDependents, grossIncome,
+								stdDeduction, otherCrdtPmnts, adjustedInc, taxRate, 
+								tax, taxesOwed, refund);
+				
+			}//END IF Tax > 0
+			else {
+				System.out.printf("%nNO taxes are owed!");
+			}//END ELSE tax <= 0
+			
+			//prompt #8 - decide to continue with another user
+			System.out.printf("%n%nContinue with another tax calculation?  \'Y' or \'N'  ");
+			input.nextLine(); //clear buffer, recevied StringIndexOutOfBoundsException error w/o
+			response = input.nextLine().charAt(0);
+			
+		}//END while continue with another tax calcuation [repeat = 'Y']
+		
+		System.exit(0); //exit without error
+		
+	}//END main()
+}//END Application Class RamosK02TPA1
+
